@@ -23,6 +23,9 @@ To use the app, navigate to the login page and enter your credentials. If you do
 ## Future Improvements
 We plan to add more features to the app, such as sharing results on social media, saving results for future reference, and adding more types of quizzes.
 
+##Contributions
+Special thanks to Lucifer7600 and TheRichDiamond for their contributions to this project. Their input was invaluable in improving the functionality and design of the web app.
+
 ## Feedback
 We appreciate your feedback. If you have any suggestions or find any bugs, please open an issue in this repository.
 
