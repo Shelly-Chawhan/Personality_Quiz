@@ -1,4 +1,4 @@
-# legendary-broccoli
+# Personality_Quiz
 
 ## Overview
 This is an online personality quiz web app. The app includes a login page, home page, a series of questions, and a results page. Users can take a personality quiz and get results based on their answers.
