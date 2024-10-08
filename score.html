@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Team 4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score </title>
+    <link href="css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/main.js"></script>
+    </style>
+</head>
+
+<body>
+
+    <div class="main-question-box">
+
+        <table>
+            <tr>
+                <th rowspan="2">QUESTION</th>
+                <th colspan="4">SCORE PER ANSWER CATEGOGY</th>
+            </tr>
+            <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td id="q1a"></td>
+                <td id="q1b"></td>
+                <td id="q1c"></td>
+                <td id="q1d"></td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td id="q2a"></td>
+                <td id="q2b"></td>
+                <td id="q2c"></td>
+                <td id="q2d"></td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td id="q3a"></td>
+                <td id="q3b"></td>
+                <td id="q3c"></td>
+                <td id="q3d"></td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td id="q4a"></td>
+                <td id="q4b"></td>
+                <td id="q4c"></td>
+                <td id="q4d"></td>
+            </tr>
+            <tr>
+                <th>5</th>
+                <td id="q5a"></td>
+                <td id="q5b"></td>
+                <td id="q5c"></td>
+                <td id="q5d"></td>
+            </tr>
+            <tr>
+                <th>6</th>
+                <td id="q6a"></td>
+                <td id="q6b"></td>
+                <td id="q6c"></td>
+                <td id="q6d"></td>
+            </tr>
+            <tr>
+                <th>7</th>
+                <td id="q7a"></td>
+                <td id="q7b"></td>
+                <td id="q7c"></td>
+                <td id="q7d"></td>
+            </tr>
+            <tr>
+                <th>8</th>
+                <td id="q8a"></td>
+                <td id="q8b"></td>
+                <td id="q8c"></td>
+                <td id="q8d"></td>
+            </tr>
+            <tr>
+                <th>9</th>
+                <td id="q9a"></td>
+                <td id="q9b"></td>
+                <td id="q9c"></td>
+                <td id="q9d"></td>
+            </tr>
+            <tr>
+                <th>10</th>
+                <td id="q10a"></td>
+                <td id="q10b"></td>
+                <td id="q10c"></td>
+                <td id="q10d"></td>
+            </tr>
+            <tr>
+                <th>11</th>
+                <td id="q11a"></td>
+                <td id="q11b"></td>
+                <td id="q11c"></td>
+                <td id="q11d"></td>
+            </tr>
+            <tr>
+                <th>TOTAL</th>
+                <td id="totalA"></td>
+                <td id="totalB"></td>
+                <td id="totalC"></td>
+                <td id="totalD"></td>
+            </tr>
+            
+        </table>
+
+
+        <div style="height: 20px;"></div> <!-- Spacer -->
+
+        <p id="highestTotal1"></p>
+        <p id="highestTotal2"></p>
+
+
+        <button onclick="location.href='question1.html'">Retake Quiz</button>
+
+    </div>
+
+
+    <script>
+        var cache = window.sessionStorage;
+
+        var totalA = 0;
+        var totalB = 0;
+        var totalC = 0;
+        var totalD = 0;
+
+        for (var i = 1; i <= 11; i++) {
+            var qia = parseInt(cache.getItem("q" + i + "a")) || 0;
+            var qib = parseInt(cache.getItem("q" + i + "b")) || 0;
+            var qic = parseInt(cache.getItem("q" + i + "c")) || 0;
+            var qid = parseInt(cache.getItem("q" + i + "d")) || 0;
+
+            totalA += qia;
+            totalB += qib;
+            totalC += qic;
+            totalD += qid;
+
+            document.getElementById("q" + i + "a").innerHTML = qia;
+            document.getElementById("q" + i + "b").innerHTML = qib;
+            document.getElementById("q" + i + "c").innerHTML = qic;
+            document.getElementById("q" + i + "d").innerHTML = qid;
+        }
+
+        document.getElementById("totalA").innerHTML = totalA;
+        document.getElementById("totalB").innerHTML = totalB;
+        document.getElementById("totalC").innerHTML = totalC;
+        document.getElementById("totalD").innerHTML = totalD;
+
+
+        // Create an array of objects where each object represents a category and its total
+        var totals = [
+            { category: 'A', total: totalA },
+            { category: 'B', total: totalB },
+            { category: 'C', total: totalC },
+            { category: 'D', total: totalD }
+        ];
+
+        // Sort the array in descending order based on the total
+        totals.sort(function(a, b) {
+            return b.total - a.total;
+        });
+
+        // Get the first two elements from the sorted array
+        var highestTotals = totals.slice(0, 2);
+
+        // Display the categories and their totals in the HTML elements
+        document.getElementById("highestTotal1").innerHTML = "Highest total 1: Category " + highestTotals[0].category + " with " + highestTotals[0].total;
+        document.getElementById("highestTotal2").innerHTML = "Highest total 2: Category " + highestTotals[1].category + " with " + highestTotals[1].total;
+
+
+
+        // Display the categories and their totals in the HTML elements
+        for (let i = 0; i < highestTotals.length; i++) {
+            let imageTag = '';
+            if (highestTotals[i].category === 'A') {
+                imageTag = '<img src="imagesss/Orange.png" alt="Blue Image" width="600" height="500">';
+            } else if (highestTotals[i].category === 'B') {
+                imageTag = '<img src="imagesss/Green.png" alt="Red Image" width="600" height="500">';
+            } else if (highestTotals[i].category === 'C') {
+                imageTag = '<img src="imagesss/Blue.png" alt="Green Image" width="600" height="500">';
+            } else if (highestTotals[i].category === 'D') {
+                imageTag = '<img src="imagesss/Gold.png" alt="Orange Image" width="600" height="500">';
+            }
+            document.getElementById("highestTotal" + (i + 1)).innerHTML = "Highest total " + (i + 1) + ": Category " + highestTotals[i].category + " with " + highestTotals[i].total + imageTag;
+        }
+
+/*
+
+
+// Display the categories and their totals in the HTML elements
+if (highestTotals[0].category === 'A') {
+    document.getElementById("highestTotal1").innerHTML = "Highest total 1: Category " + highestTotals[0].category + " with " + highestTotals[0].total + '<img src="imagesss/Blue.png" alt="Orange Image">';
+} else {
+    document.getElementById("highestTotal1").innerHTML = "Highest total 1: Category " + highestTotals[0].category + " with " + highestTotals[0].total;
+}
+
+if (highestTotals[1].category === 'A') {
+    document.getElementById("highestTotal2").innerHTML = "Highest total 2: Category " + highestTotals[1].category + " with " + highestTotals[1].total + '<img src="imagesss/Blue.png" alt="Orange Image">';
+} else {
+    document.getElementById("highestTotal2").innerHTML = "Highest total 2: Category " + highestTotals[1].category + " with " + highestTotals[1].total;
+}
+
+*/
+    </script>
+    
+
+</body>
+
+</html>
